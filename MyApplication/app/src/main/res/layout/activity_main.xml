@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,343 +11,250 @@
         android:id="@+id/main_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="164dp"
-        android:layout_marginBottom="3dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        android:layout_centerInParent="true"
         app:srcCompat="@drawable/main_background" />
 
     <TextView
         android:id="@+id/app_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="78dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="608dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="85dp"
+        android:fontFamily="@font/anton"
         android:text="疫情防控客户端"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#99000000"
+        android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="38dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="82dp"
-        android:layout_marginEnd="332dp"
-        android:layout_marginBottom="608dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout3"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginRight="0dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/Gps_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textDate"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#66F1B394"
+            android:text="获取当前GPS信息"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <Button
+            android:id="@+id/verify_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/postionView"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#66F1B394"
+            android:text="确认对比轨迹"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/compare_time"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="上次对比时间："
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/textDate"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/compare_time" />
+
+        <TextView
+            android:id="@+id/compare_result"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@+id/verify_button"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="对比结果："
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/result_text"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@+id/verify_button"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_toRightOf="@+id/compare_result"
+            android:background=" @drawable/rect "
+            android:gravity="center"
+            android:text="点击对比..."
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/postionView"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_below="@+id/Gps_button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:id="@+id/enquiry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/result_text"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#668BC34A"
+            android:text="查询状态"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_name"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/ch_gps_view_1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background=" @drawable/check_gps_sq " />
+
+        <TextView
+            android:id="@+id/ch_gps_view_2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:background=" @drawable/check_gps_sq " />
+
+        <TextView
+            android:id="@+id/ch_gps_view_3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:background=" @drawable/check_gps_sq " />
+
+        <TextView
+            android:id="@+id/ch_gps_view_4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:background=" @drawable/check_gps_sq " />
+
+        <TextView
+            android:id="@+id/ch_gps_view_5"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:background=" @drawable/check_gps_sq " />
+
+        <TextView
+            android:id="@+id/ch_gps_view_6"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:background=" @drawable/check_gps_sq " />
+
+        <TextView
+            android:id="@+id/ch_gps_view_7"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:background=" @drawable/check_gps_sq " />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_marginTop="20dp"
+
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/ch_gps_view_8"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background=" @drawable/check_gps_sq " />
+
+        <TextView
+            android:id="@+id/ch_gps_view_9"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:background=" @drawable/check_gps_sq " />
+
+        <TextView
+            android:id="@+id/ch_gps_view_10"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:background=" @drawable/check_gps_sq " />
+
+        <TextView
+            android:id="@+id/ch_gps_view_11"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:background=" @drawable/check_gps_sq " />
+
+        <TextView
+            android:id="@+id/ch_gps_view_12"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:background=" @drawable/check_gps_sq " />
+
+        <TextView
+            android:id="@+id/ch_gps_view_13"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:background=" @drawable/check_gps_sq " />
+
+        <TextView
+            android:id="@+id/ch_gps_view_14"
+            android:layout_width="30dp"
+            android:layout_height="33dp"
+            android:layout_marginLeft="15dp"
+            android:background=" @drawable/check_gps_sq " />
+    </LinearLayout>
 
     <Button
-        android:id="@+id/Gps_button"
+        android:id="@+id/Person_cen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="511dp"
-        android:layout_marginBottom="172dp"
-        android:background="#F1B394"
-        android:text="获取当前GPS信息"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:background="#66F1B394"
+        android:text="个人中心"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
-    <Button
-        android:id="@+id/verify_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#F1B394"
-        android:text="确认对比轨迹"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
-
-    <TextView
-        android:id="@+id/compare_time"
-        android:layout_width="139dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="278dp"
-        android:layout_marginEnd="229dp"
-        android:layout_marginBottom="422dp"
-        android:text="上次对比时间："
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textDate"
-        android:layout_width="149dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="276dp"
-        android:layout_marginEnd="62dp"
-        android:layout_marginBottom="422dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/compare_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="434dp"
-        android:layout_marginEnd="279dp"
-        android:layout_marginBottom="273dp"
-        android:text="对比结果："
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/result_text"
-        android:layout_width="200dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="434dp"
-        android:layout_marginEnd="59dp"
-        android:layout_marginBottom="268dp"
-        android:text="点击对比..."
-        android:background=" @drawable/rect "
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ch_gps_view_1"
-        android:layout_width="30dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="63dp"
-        android:layout_marginTop="171dp"
-        android:layout_marginEnd="318dp"
-        android:layout_marginBottom="527dp"
-        android:background=" @drawable/check_gps_sq "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ch_gps_view_2"
-        android:layout_width="30dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="103dp"
-        android:layout_marginTop="171dp"
-        android:layout_marginEnd="278dp"
-        android:layout_marginBottom="527dp"
-        android:background=" @drawable/check_gps_sq "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ch_gps_view_3"
-        android:layout_width="30dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="171dp"
-        android:layout_marginEnd="229dp"
-        android:layout_marginBottom="527dp"
-        android:background=" @drawable/check_gps_sq "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ch_gps_view_4"
-        android:layout_width="30dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="171dp"
-        android:layout_marginEnd="181dp"
-        android:layout_marginBottom="527dp"
-        android:background=" @drawable/check_gps_sq "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ch_gps_view_5"
-        android:layout_width="30dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="246dp"
-        android:layout_marginTop="171dp"
-        android:layout_marginEnd="135dp"
-        android:layout_marginBottom="527dp"
-        android:background=" @drawable/check_gps_sq "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ch_gps_view_6"
-        android:layout_width="30dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="290dp"
-        android:layout_marginTop="171dp"
-        android:layout_marginEnd="91dp"
-        android:layout_marginBottom="527dp"
-        android:background=" @drawable/check_gps_sq "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ch_gps_view_7"
-        android:layout_width="30dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="336dp"
-        android:layout_marginTop="171dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="527dp"
-        android:background=" @drawable/check_gps_sq "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ch_gps_view_8"
-        android:layout_width="30dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="63dp"
-        android:layout_marginTop="227dp"
-        android:layout_marginEnd="318dp"
-        android:layout_marginBottom="471dp"
-        android:background=" @drawable/check_gps_sq "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ch_gps_view_9"
-        android:layout_width="30dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="103dp"
-        android:layout_marginTop="227dp"
-        android:layout_marginEnd="278dp"
-        android:layout_marginBottom="471dp"
-        android:background=" @drawable/check_gps_sq "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ch_gps_view_10"
-        android:layout_width="30dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="227dp"
-        android:layout_marginEnd="229dp"
-        android:layout_marginBottom="471dp"
-        android:background=" @drawable/check_gps_sq "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ch_gps_view_11"
-        android:layout_width="30dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="227dp"
-        android:layout_marginEnd="181dp"
-        android:layout_marginBottom="471dp"
-        android:background=" @drawable/check_gps_sq "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ch_gps_view_12"
-        android:layout_width="30dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="246dp"
-        android:layout_marginTop="227dp"
-        android:layout_marginEnd="135dp"
-        android:layout_marginBottom="471dp"
-        android:background=" @drawable/check_gps_sq "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ch_gps_view_13"
-        android:layout_width="30dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="290dp"
-        android:layout_marginTop="227dp"
-        android:layout_marginEnd="91dp"
-        android:layout_marginBottom="471dp"
-        android:background=" @drawable/check_gps_sq "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ch_gps_view_14"
-        android:layout_width="30dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="336dp"
-        android:layout_marginTop="227dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="471dp"
-        android:background=" @drawable/check_gps_sq "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/postionView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="158dp"
-        android:layout_marginTop="606dp"
-        android:layout_marginEnd="195dp"
-        android:layout_marginBottom="106dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

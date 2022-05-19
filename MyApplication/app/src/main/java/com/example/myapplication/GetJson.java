@@ -1,8 +1,10 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +36,10 @@ public class GetJson {
         this.run1 = new run_1(main_activity, textDate, runurl);
     }
 
+    public GetJson(){
+
+    }
+
     class run_1 implements Runnable {
         public TextView textDate;
         public Context main_activity;
@@ -52,18 +58,21 @@ public class GetJson {
             //真实使用时的日期获取
             String[] dates = getdatas();
             //此处定义仅供实现指定如期测试
-            //String[] dates = {"2022-03-20","2022-03-21","2022-03-22","2022-03-23","2022-03-24","2022-03-25"};
+            //String[] dates = {"2022-03-01","2022-03-02","2022-03-03","2022-03-04","2022-03-05","2022-03-06"};
             //进行A，B文件分类
             String[] query = {"A","B"};
             String ip_id = this.baseurl;//从配置文件读取当下的IP地址
+            //String ip_id = "8.130.50.39";
             //两次循环分别读取A，B类确诊患者信息
             for (int j = 0;j<2;j++){
                 //此处用于测试，实际获取当前日期的前十四天信息
-                for(int i = 0;i <14;i++) {
-
+                for(int i = 0;i < 14;i++) {
                     //设计新的url格式进行json文件访问
-                    String url = "http://"+ip_id+"/query"+query[j]+"/?date=" + dates[i];
+                    //String url = "http://"+ip_id+"/query"+query[j]+"/?date=" + dates[i];
+                    String url = ip_id+"/gettraces_date/"+"?type="+query[j]+"&date=" + dates[i];
+                    //String url = "http://"+ ip_id+"/test/"+"?type="+query[j]+"&date=" + dates[i];
 
+                    System.out.println(url);
                     s[0] = doGet(url);
                     try {
                         JSONObject content = new JSONObject(s[0]);
@@ -75,23 +84,33 @@ public class GetJson {
 
                     //获取JSON文件内容，并将结果存入文件内
                     String final_S = getS();//获取整个json文件的信息
-                    String name = "trace" + dates[i]+ "-"+ query[j]+".txt";
+                    String name ="trace" + dates[i]+ "-"+ query[j]+".txt";
                     FileUtils fileUtils2 = new FileUtils(this.main_activity, name, final_S);
                     fileUtils2.WriteToFile();
                     clearS();//对全局变量进行初始化，防止每次都是追加写入
 
                     //获取错误信息
                     int Error_log = getError_log();
-                    String error_typy = getError_type(Error_log);
-                    System.out.println(error_typy);
-
-                    //在指定位置显示错误信息
-                    this.textDate.setText(error_typy);
-                    clearError_log();//清除错误信息的标志，以供下一轮过程的结果显示
+                    if(Error_log != 100){
+                        String error_typy = getError_type(Error_log);
+                    }
                 }
             }
-            //删除过期文件
-            DeleteFileDate();
+            System.out.println("即将进行文件删除");
+            //DeleteFileDate();
+            System.out.println("已经完成文件删除");
+
+            //获取错误信息
+            int Error_log = getError_log();
+            String error_typy = getError_type(Error_log);
+            //System.out.println(error_typy);
+            if(Error_log != 100){
+                Looper.prepare();
+                Toast.makeText(main_activity, error_typy, Toast.LENGTH_SHORT).show();
+                System.out.println("界面显示完成");
+                Looper.loop();
+            }
+
             Log.e("Thread", "stop");
         }
     }
@@ -105,6 +124,7 @@ public class GetJson {
     //由于需要循环写入，故在该部分选择将全局变量S置空，方便下次写入
     public void clearS(){
         this.S = "";
+        error_log = 100;
     }
     //该变量为记录错误类型的标识符
     public int error_log = 0;
@@ -143,7 +163,7 @@ public class GetJson {
                 }
                 result = builder.toString();
             } catch (IOException e) {
-                error_log = 11;//网络不稳定，需要用户自行设置网络
+                error_log = 12;//网络连接超时，请检查配置文件
                 e.printStackTrace();
             }
         }catch (MalformedURLException | ProtocolException e){
@@ -164,13 +184,14 @@ public class GetJson {
         S = S+date+"\n";
         try{
             trace = content.optJSONArray("trace");
-            System.out.println(trace);
+            //System.out.println(trace);
             try {
                 for (int i = 0; i < trace.length(); i++) {
                     JSONObject jsonObj = trace.optJSONObject(i);
                     JSONArray traces = new JSONArray();
                     traces = jsonObj.optJSONArray("traces");
-                    String title = "id： " + i+ '\n';
+                    int id = jsonObj.optInt("user_id");
+                    String title ="id： " + id+ '\n';
 
                     //WriteDate(title,name);
                     S = S+title;
@@ -261,14 +282,20 @@ public class GetJson {
             cal.add(Calendar.DAY_OF_MONTH, -i);
             dates[i] = formatter.format(cal.getTime());
             System.out.println(i+"天前的时间为：" + dates[i]);
-        }
+         }
         return dates;
     }
     //判断错误类型
     public String getError_type(int Error_log){
-        String Error_type = "正常执行";
+        String Error_type = null;
+        if(Error_log == 0){
+            Error_type = "该程序存在未知错误";
+        }
         if(Error_log == 11){
             Error_type = "网络不稳定，需要用户自行设置网络";
+        }
+        if(Error_log == 12){
+            Error_type = "网络连接超时，请检查配置文件";
         }
         if(Error_log == 21){
             Error_type = "当前页面为空，请联系该服务器进行信息更新";
@@ -279,39 +306,62 @@ public class GetJson {
         if(Error_log == 23){
             Error_type = "该页面信息不全，请您谨慎参考";
         }
+        if(Error_log == 100){
+            Error_type = "正常执行";
+        }
         return Error_type;
     }
+
     //删除文件功能
     public void DeleteFileDate(){
-        //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date newdate=new Date();
-        Date olddate=new Date();
-        Calendar now = Calendar.getInstance();
-        now.setTime(newdate);
-        now.set(Calendar.DATE, now.get(Calendar.DATE) - 2);
-        olddate=now.getTime();//得到十四天前的时间
+        String[] keep_dates = getdatas();
+        //System.out.println(keep_dates);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String oldstr1 = "trace"+sdf.format(olddate)+"-"+"A"+".txt";
-        String oldstr2 = "trace"+sdf.format(olddate)+"-"+"B"+".txt";
-        System.out.println(oldstr1);
-        System.out.println(oldstr2);
+        //此处定义的文件名为需要保留的A，B类型文件
+        String[] olddate1 = new String[15];
+        String[] olddate2 = new String[15];
+
+        String temp1 = null;
+        for(int j = 0;j<14;j++){
+            System.out.println(keep_dates[j]);
+            temp1 = "trace"+keep_dates[j]+"-"+"A"+".txt";
+            System.out.println(temp1);
+            olddate1[j] = temp1;
+            System.out.println(olddate1[j]);
+        }
+        for(int j = 0;j<14;j++){
+            olddate2[j] = "trace"+keep_dates[j]+"-"+"B"+".txt";
+        }
+
         File directory = new File("data/data/com.example.myapplication/files");
         // 获取该目录下的所有文件
-        String[]  tempList  =  directory.list();
-
         File  temp  =  null;
-        for  (int  i  =  0;  i  <  tempList.length;  i++)  {
-            String path="data/data/com.example.myapplication/files/"+tempList[i];
+        String[]  tempList  =  directory.list();
+        for (int s = 0;s < tempList.length;s++){
+            String path="data/data/com.example.myapplication/files/"+tempList[s];
             temp  =  new  File(path);
-            //System.out.println(temp.getName());
-            if(temp.getName().startsWith(oldstr1)||temp.getName().startsWith(oldstr2)){
-                //System.out.println(temp.getName());
-                //如果存在这个文件//创建一个新的文件的时候就删除一次
-                temp.delete();
+            if(temp.getName().startsWith("t")){
+                int sign = 10;
+                for(int t = 0;t<14;t++){
+                    if(temp.getName().startsWith(olddate1[t])||temp.getName().startsWith(olddate2[t])){
+                        System.out.println(temp.getName());
+                        //如果存在这个文件//创建一个新的文件的时候就删除一次
+                        //temp.delete();
+                        sign = 101;
+                    }
+                }
+                if(sign != 101) {
+                    //如果文件不符合要求，就将文件删除
+                    temp.delete();
+                }
             }
+
         }
+        //if(error_log == 0){
+            error_log = 100;
+        //}
     }
+
 
 }
 

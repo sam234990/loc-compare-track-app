@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#CEF6FD"
-    tools:context=".RegisterActivity">
+    tools:context=".ModifyActivity">
 
     <ImageView
         android:id="@+id/main_background"
@@ -34,101 +34,121 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/app_name"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="49dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="0dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/phone_number"
+            android:id="@+id/account"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="手机号："
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_below="@+id/phone_number"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="密    码："
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_below="@+id/textView2"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="确认密码："
-            android:textAlignment="center"
+            android:text="账   号："
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <EditText
-            android:id="@+id/editTextNumber"
+            android:id="@+id/account_text"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="35dp"
             android:layout_marginTop="20dp"
-            android:layout_toRightOf="@+id/phone_number"
+            android:layout_toRightOf="@+id/account"
             android:ems="10"
-            android:hint="请输入手机号"
-            android:inputType="number"
+            android:hint="请输入账号"
+            android:inputType="textPassword"
             android:minHeight="48dp" />
 
-        <EditText
-            android:id="@+id/editTextTextPassword"
+        <TextView
+            android:id="@+id/password"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_below="@+id/editTextNumber"
-            android:layout_marginLeft="40dp"
+            android:layout_below="@+id/account"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:layout_toRightOf="@+id/textView2"
+            android:gravity="center"
+            android:text="原密码："
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <EditText
+            android:id="@+id/password_old"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_below="@+id/account_text"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/password"
             android:ems="10"
             android:hint="请输入密码"
             android:inputType="textPassword"
             android:minHeight="48dp" />
 
-        <EditText
-            android:id="@+id/editTextTextPassword2"
+        <TextView
+            android:id="@+id/password_new"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_below="@+id/editTextTextPassword"
-            android:layout_marginLeft="25dp"
+            android:layout_below="@+id/password"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_toRightOf="@+id/textView3"
+            android:gravity="center"
+            android:text="新密码："
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <EditText
+            android:id="@+id/new_password"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_below="@+id/password_old"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/password_new"
             android:ems="10"
-            android:hint="请再次输入密码"
+            android:hint="请输入密码"
             android:inputType="textPassword"
             android:minHeight="48dp" />
 
+        <TextView
+            android:id="@+id/confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_below="@+id/password_new"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="确认密码："
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
+        <EditText
+            android:id="@+id/re_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_below="@+id/new_password"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/confirm"
+            android:ems="10"
+            android:hint="确认密码"
+            android:inputType="textPassword"
+            android:minHeight="48dp" />
     </RelativeLayout>
 
     <Button
-        android:id="@+id/inner_reg_button"
+        android:id="@+id/button_con"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_rel"
-        android:layout_alignParentRight="true"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="50dp"
         android:layout_marginRight="20dp"
-        android:background="#66F1B394"
-        android:text="点击注册"
+        android:layout_marginTop="30dp"
+        android:background="#43F1B394"
+        android:text="确认修改"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
 
 </RelativeLayout>

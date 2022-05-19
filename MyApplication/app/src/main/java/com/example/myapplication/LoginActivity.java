@@ -35,7 +35,7 @@ public class LoginActivity<activity_login> extends AppCompatActivity {
 //        int localversion = getLocalVersion(this);
         String localVersionname = getLocalVersionName(this);
         System.out.println(localVersionname);
-        Toast.makeText(LoginActivity.this, localVersionname, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(LoginActivity.this, localVersionname, Toast.LENGTH_SHORT).show();
         checkVersion();
     }
 
@@ -79,12 +79,12 @@ public class LoginActivity<activity_login> extends AppCompatActivity {
     public void checkVersion() {
         //如果检测本程序的版本号小于服务器的版本号，那么提示用户更新
         int localversion = getLocalVersion(this);
-        if (localversion <= 2) {
-        //弹出提示版本更新的对话框
-            Toast.makeText(LoginActivity.this, "请前往更新", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(LoginActivity.this, "已经是最新版本", Toast.LENGTH_SHORT).show();
-        }
+//        if (localversion <= 2) {
+//        //弹出提示版本更新的对话框
+//            Toast.makeText(LoginActivity.this, "请前往更新", Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(LoginActivity.this, "已经是最新版本", Toast.LENGTH_SHORT).show();
+//        }
     }
 
 

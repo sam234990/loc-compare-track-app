@@ -12,10 +12,13 @@
         <entry key="..\:/Java/Android/MyApplication/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2185" />
         <entry key="..\:/Java/Android/MyApplication/app/src/main/res/drawable/check_gps_sq.xml" value="0.1615" />
         <entry key="..\:/Java/Android/MyApplication/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2185" />
-        <entry key="..\:/Java/Android/MyApplication/app/src/main/res/layout/activity_login.xml" value="0.13645833333333332" />
+        <entry key="..\:/Java/Android/MyApplication/app/src/main/res/layout/activity_login.xml" value="0.29010416666666666" />
         <entry key="..\:/Java/Android/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.29010416666666666" />
+        <entry key="..\:/Java/Android/MyApplication/app/src/main/res/layout/activity_modify.xml" value="0.25679347826086957" />
+        <entry key="..\:/Java/Android/MyApplication/app/src/main/res/layout/activity_person_set.xml" value="0.25679347826086957" />
         <entry key="..\:/Java/Android/MyApplication/app/src/main/res/layout/activity_register.xml" value="0.16875" />
         <entry key="..\:/Java/Android/MyApplication/app/src/main/res/layout/activity_register_jmp.xml" value="0.16875" />
+        <entry key="..\:/Java/Android/MyApplication/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
       </map>
     </option>
   </component>

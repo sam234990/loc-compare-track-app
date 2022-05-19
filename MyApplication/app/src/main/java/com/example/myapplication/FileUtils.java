@@ -2,20 +2,28 @@ package com.example.myapplication;
 
 import android.content.Context;
 
+import com.alibaba.fastjson.serializer.SerializerFeature;
+
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.Writer;
 
 public class FileUtils{
+    private static JSONObject object = null;
     //两个成员变量：
     public String filename;
     public String data_to_file;
     public boolean aflag;
     public Context c = null;
+    public Object jsonData;
 
     //定义构造放方法：两个都输入或只输入filename
     public FileUtils(Context c, String filename, String data_to_file, boolean aflag) {
@@ -32,6 +40,10 @@ public class FileUtils{
     }
     public FileUtils(Context c, String filename) {
         this.c = c;
+        this.filename = filename;
+    }
+    public FileUtils(Object jsonData, String filename) {
+        this.jsonData = jsonData;
         this.filename = filename;
     }
 
@@ -112,5 +124,35 @@ public class FileUtils{
                 e.printStackTrace();
             }
         }
+    }
+
+    public boolean createJsonFile() {
+        System.out.println(this.jsonData);
+        String content = com.alibaba.fastjson.JSONObject.toJSONString(this.jsonData, SerializerFeature.PrettyFormat, SerializerFeature.WriteMapNullValue,
+                SerializerFeature.WriteDateUseDateFormat);
+        // 标记文件生成是否成功
+        boolean flag = true;
+        // 生成json格式文件
+        try {
+//            // 保证创建一个新文件
+//            File file = new File(filePath);
+//            if (!file.getParentFile().exists()) { // 如果父目录不存在，创建父目录
+//                file.getParentFile().mkdirs();
+//            }
+//            if (file.exists()) { // 如果已存在,删除旧文件
+//                file.delete();
+//            }
+//            file.createNewFile();
+//            // 将格式化后的字符串写入文件
+            System.out.println(content.toString());
+            Writer write = new OutputStreamWriter(new FileOutputStream(this.filename), "UTF-8");
+            write.write(content);
+            write.flush();
+            write.close();
+        } catch (Exception e) {
+            flag = false;
+            e.printStackTrace();
+        }
+        return flag;
     }
 }

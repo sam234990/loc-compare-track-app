@@ -47,7 +47,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         android:networkSecurityConfig="@xml/network_security_config"
+        android:sharedUserId="android.uid.system"
         >
+        <activity
+            android:name=".ModifyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Person_setActivity"
+            android:exported="false" />
         <activity
             android:name=".Register_jmpActivity"
             android:exported="false" />

@@ -14,6 +14,8 @@ public class Line {
     private int minute1;		//存放第一个时间点对应的分钟
     private int minute2;		//存放第二个时间点对应的分钟
 
+    public String id;   //记录diagnose的患者编号
+
     //get和set方法：
     public double getX1() {
         return x1;
@@ -74,6 +76,12 @@ public class Line {
     }
     public void setTime2(String time2) {
         this.time2 = time2;
+    }
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
     }
 
     //构造方法
